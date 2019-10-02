@@ -126,7 +126,7 @@ new Vue({
         tabs: [
             { index: 0, name: 'HOME', href:'index.html' },
             { index: 1, name: 'RUTINES', href:'rutines.html' },
-            { index: 2, name: 'FAVOURITES' },
+            { index: 2, name: 'FAVOURITES', href: 'favourites.html' },
             { index: 3, name: 'SAFETY'},
         ]
     }),
