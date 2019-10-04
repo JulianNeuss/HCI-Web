@@ -162,9 +162,9 @@ new Vue({
     data: () => ({
         active_tab: 0,
         tabs: [
-            { index: 0, name: 'HOME', href:'index.html' },
-            { index: 1, name: 'RUTINES', href:'rutines.html' },
-            { index: 2, name: 'FAVOURITES', href: 'favourites.html' },
+            { index: 0, name: 'HOME', href:'index.HTML' },
+            { index: 1, name: 'RUTINES', href:'rutines.HTML' },
+            { index: 2, name: 'FAVOURITES', href: 'favourites.HTML' },
             { index: 3, name: 'SAFETY'},
         ]
     }),
