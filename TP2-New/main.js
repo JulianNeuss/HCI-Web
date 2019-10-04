@@ -46,8 +46,8 @@ Vue.component('toolbar', {
                 return {
                     drawer:false,
                     items: [
-                        { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-                        { title: 'Photos', icon: 'mdi-image' },
+                        { title: 'Cuenta', icon: 'account_circle' },
+                        { title: 'Log out', icon: 'rowing' },
                         { title: 'About', icon: 'mdi-help-box' },
                       ],
                 }
