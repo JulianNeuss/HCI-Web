@@ -88,73 +88,103 @@ Vue.component('rooms',{
     template:
     `<div> 
 
-            <p class="headline font-weight-bold">Room's</p>
-                          <!-- <v-btn icon>
-                              <v-icon>add</v-icon>
-                          </v-btn> -->
-                          <v-divider></v-divider>
-                          <v-row>
-                              <v-col v-for="room in rooms" :key="room"  cols="12" md="6" >
-                                  <v-card :elevation="21" height="150" type="button" @click="dialog = !dialog">  <!-- hay que sacar height y ponerlo en un css-->
-                                    <v-img class="white--text" height="150"   :src="room.src">  <!-- hay que sacar height y ponerlo en un css-->
-                                        <v-card-title v-text="room.title" > </v-card-title>
-                                        <v-dialog v-model="dialog"  width="400px">  <!-- cambiar width tiene que estar en un CSS -->
-                                            <v-card>
-                                                <v-card-title class="grey darken-1"> CREATE RUTINE</v-card-title>
-                                                <v-container grid-list-sm>
-                                                    <v-layout row wrap>
-                                                        <v-flex  xs12  align-center  justify-space-between >
-                                                            <v-layout align-center>
-                                                                <v-text-field placeholder="Name"></v-text-field>
+            <v-list-item one-line>
+                    <v-list-item-content class="align-self-start">
+                        <v-list-item-title  class="headline font-weight-bold">Room's</v-list-item-title>
+                    </v-list-item-content>
+                    <v-btn class="mx-2" fab dark color="deep-purple darken-1">
+                        <v-icon dark> add </v-icon>
+                    </v-btn>
+            </v-list-item>                           
+           
+            <v-divider></v-divider>
+            
+            <v-row>
+                  <v-col v-for="room in rooms" :key="room"  cols="12" md="6" >
+                         <v-card :elevation="21" height="150" type="button" @click="dialog = !dialog">  <!-- hay que sacar height y ponerlo en un css-->
+                               <v-img class="white--text" height="150"   :src="room.src">  <!-- hay que sacar height y ponerlo en un css-->
+                                     <v-card-title v-text="room.title" > </v-card-title>
+                                     <v-dialog v-model="dialog"  width="400px">  <!-- cambiar width tiene que estar en un CSS -->
+                                          <v-card>
+                                            
+                                              <v-list-item-content class="text-center">
+                                                    <v-list-item-title  class="title"  v-text="room.title"></v-list-item-title>
+                                              </v-list-item-content>
+                                                 
+                                              <v-row justify="space-around">
+                                                    <v-btn class="mx-2"  dark color="deep-purple darken-1" @click="dialog = !dialog">
+                                                          <v-icon dark> edit </v-icon> EDIT
+                                                    </v-btn>
+                                                    <v-btn class="mx-2"  dark color="deep-purple darken-1" @click="addbutton = !addbutton" >
+                                                          <v-icon dark> add </v-icon> ADD
+                                                    </v-btn>
+                                              </v-row>
+                                              
+                                              <!-- -->
+                                              <v-dialog v-model="addbutton" width="400px"><!-- cambiar width tiene que estar en un CSS -->
+                                                 
+                                                    <v-card>
+                                                        <v-card-title class="grey darken-2" light>
+                                                            Add Device
+                                                        </v-card-title>
+                                                        <v-container grid-list-sm>
+                                                        
+                                                            <v-layout row wrap>
+                                                                <v-col class="d-flex" cols="12" sm="12">
+                                                                  <v-select
+                                                                    :items="items"
+                                                                    label="Select Device"
+                                                                  ></v-select>
+                                                                </v-col>
                                                             </v-layout>
-                                                        </v-flex>
-                                                        <v-flex xs6>
-                                                            <v-text-field prepend-icon="business" placeholder="Company"></v-text-field>
-                                                        </v-flex>
-                                                        <v-flex xs6>
-                                                            <v-text-field  placeholder="Job title" ></v-text-field>
-                                                        </v-flex>
-                                                        <v-flex xs12>
-                                                            <v-text-field  prepend-icon="mail"  placeholder="Email"></v-text-field>
-                                                        </v-flex>
-                                                        <v-flex xs12>
-                                                            <v-text-field type="tel" prepend-icon="phone" placeholder="(000) 000 - 0000"></v-text-field>
-                                                        </v-flex>
-                                                        <v-flex xs12>
-                                                            <v-text-field prepend-icon="notes" placeholder="Notes"></v-text-field>
-                                                        </v-flex>
-                                                    </v-layout>
-                                                </v-container>
-                                                <v-card-actions>
-                                                    <v-btn text color="primary">More</v-btn>
+                                                            
+                                                        </v-container>
+                                                        <v-card-actions>
+                                                            <v-spacer></v-spacer>
+                                                            <v-btn  text  color="primary" @click="addbutton = false" >Cancel</v-btn>
+                                                            <v-btn text @click="addbutton = false">Save</v-btn>
+                                                        </v-card-actions>
+                                                     </v-card>
+                                              
+                                              
+                                              </v-dialog>
+                                              
+                                              <!-- -->
+                                              
+                                                 
+                                                
+                                              <v-card-actions>
                                                     <v-spacer></v-spacer>
                                                     <v-btn  text  color="primary" @click="dialog = false" >Cancel</v-btn>
                                                     <v-btn text @click="dialog = false">Save</v-btn>
-                                                </v-card-actions>
-                                            </v-card>
-                                        </v-dialog>
-                                    </v-img>
-                                  </v-card>
-                            </v-col>
-                        </v-row>
+                                              </v-card-actions>
+                                          </v-card>
+                                     </v-dialog>
+                               </v-img>
+                         </v-card>
+                  </v-col>
+            </v-row>
+            
      </div>`,
     data() {
         return {
             dialog: false,
+            addbutton: false,
+            items: [ 'AC', 'ASPIRADORA', 'CORTINA','HELADERA','HORNO','LAMPARA' , 'PARLANTE' , 'PUERTA'],
             rooms: [
-                { title: 'Living'},
-                { title: 'Garage'},
-                { title: 'Kitchen'},
-                { title: 'Playroom'},
-                { title: 'Dorm Jorge'},
-                { title: 'Dorm Susana'},
-                { title: 'Dorm Betty'},
-                { title: 'Add New Room'},
+                { title: 'Living', src: "../src/living.jpg"},
+                { title: 'Garage', src: "../src/garage.jpg"},
+                { title: 'Kitchen', src: "../src/kitchen.jpg"},
+                { title: 'Playroom', src: "../src/playroom.jpg"},
+                { title: 'Dorm Jorge', src: "../src/dormitorio.jpg"},
+                { title: 'Dorm Susana', src: "../src/dormitorio.jpg"},
+                { title: 'Dorm Betty', src: "../src/dormitorio.jpg"},
             ]
         }
     }
 
 })
+
 
 new Vue({
     el: '#app',
@@ -163,9 +193,9 @@ new Vue({
         active_tab: 0,
         tabs: [
             { index: 0, name: 'HOME', href:'index.html' },
-            { index: 1, name: 'RUTINES', href:'rutines.html' },
+            { index: 1, name: 'ROUTINES', href:'routines.html' },
             { index: 2, name: 'FAVOURITES', href: 'favourites.html' },
-            { index: 3, name: 'SAFETY'},
+            { index: 3, name: 'SAFETY', href: 'safety.html'},
         ]
     }),
 })
